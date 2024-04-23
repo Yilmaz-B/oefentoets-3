@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="fs-1">
+                    Welkom {{ app.user.fname }}!
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="fs-6">
+                    Dit is de admin pagina.
+                </div>
+            </div>
+        </div>
+        {% if app.user.master %}
+            <div class="row">
+                <div class="col">
+                    <div class="fs-6">
+                        Jij bent de meester van {{ app.user.master }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

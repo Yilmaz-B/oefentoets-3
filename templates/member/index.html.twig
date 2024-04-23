@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MemberController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% for label, messages in app.flashes(['success', 'warning']) %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show flash-{{ label }}" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <div class="row">
+            <div class="col">
+                <div class="fs-1">
+                    Welkom {{ app.user.fname }}!
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="fs-6">
+                    Dit is de member pagina.
+                </div>
+            </div>
+        </div>
+        {% if app.user.master %}
+            <div class="row">
+                <div class="col">
+                    <div class="fs-6">
+                        Jij bent de meester van {{ app.user.master }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="row">
+            <div class="col">
+                <div class="fs-2">
+                    Mijn verhalen
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Titel</th>
+                    <th scope="col">Beschrijving</th>
+                    <th scope="col">Datum</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for story in stories %}
+                    <tr>
+                        <th scope="row">{{ story.title }}</th>
+                        <td>{{ story.description }}</td>
+                        <td>{{ story.date|date('d/m/Y') }}</td>
+                        <td>
+                            <a class="btn btn-warning" href="{{ path('member_update', { 'id' : story.id }) }}">
+                                Update
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a class="btn btn-success text-decoration-none text-white" href="{{ path('member_insert') }}">
+            Toevoegen
+        </a>
+    </div>
+{% endblock %}
