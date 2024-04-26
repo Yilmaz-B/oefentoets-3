@@ -43,7 +43,7 @@ class MemberController extends AbstractController
             return $this->redirectToRoute('app_member');
         }
 
-        return $this->render('member/handleStory.html.twig', [
+        return $this->render('adventure/handleStory.html.twig', [
             'form' => $form,
             'message' => $message
         ]);
@@ -67,7 +67,7 @@ class MemberController extends AbstractController
             return $this->redirectToRoute('app_member');
         }
 
-        return $this->render('member/handleStory.html.twig', [
+        return $this->render('adventure/handleStory.html.twig', [
             'form' => $form,
             'message' => $message,
         ]);

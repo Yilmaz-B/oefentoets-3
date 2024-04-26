@@ -23,6 +23,7 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class)
             ->add('fname')
+            ->add('Master')
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -41,7 +42,6 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Password',
             ])
-            ->add('Master')
             ->add('Submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-dark'

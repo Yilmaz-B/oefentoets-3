@@ -22,8 +22,14 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Home</a>
+                                <a class="nav-link active" aria-current="page" {% if is_granted("ROLE_MEMBER") %} href="{{ path('app_member') }}"
+                                {% elseif is_granted("ROLE_ADMIN")%} href="{{ path('app_admin')}}" {% else %} href="{{ path('app_home') }}" {% endif %}">Home</a>
                             </li>
+                            {% if is_granted("ROLE_MEMBER") %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('member_products') }}">Products</a>
+                                </li>
+                            {% endif %}
                         </ul>
                         <ul class="navbar-nav mb-2 mb-lg-0">
                             {% if is_granted("ROLE_MEMBER") or is_granted("ROLE_ADMIN") %}
@@ -42,6 +48,20 @@
                     </div>
                 </div>
             </nav>
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col">
+                        {% for label, messages in app.flashes(['success', 'warning']) %}
+                            {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show flash-{{ label }}" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         {% endblock %}
         {% block body %}{% endblock %}
     </body>

@@ -1,17 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MemberController!{% endblock %}
+{% block title %}Home Member{% endblock %}
 
 {% block body %}
     <div class="container">
-        {% for label, messages in app.flashes(['success', 'warning']) %}
-            {% for message in messages %}
-                <div class="alert alert-success alert-dismissible fade show flash-{{ label }}" role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            {% endfor %}
-        {% endfor %}
         <div class="row">
             <div class="col">
                 <div class="fs-1">
