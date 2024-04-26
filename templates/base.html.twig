@@ -25,9 +25,9 @@
                                 <a class="nav-link active" aria-current="page" {% if is_granted("ROLE_MEMBER") %} href="{{ path('app_member') }}"
                                 {% elseif is_granted("ROLE_ADMIN")%} href="{{ path('app_admin')}}" {% else %} href="{{ path('app_home') }}" {% endif %}">Home</a>
                             </li>
-                            {% if is_granted("ROLE_MEMBER") %}
+                            {% if is_granted("ROLE_MEMBER") or is_granted("ROLE_ADMIN") %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('member_products') }}">Products</a>
+                                    <a class="nav-link" href="{{ path('categories') }}">Products</a>
                                 </li>
                             {% endif %}
                         </ul>
